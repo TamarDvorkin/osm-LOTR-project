@@ -92,8 +92,7 @@ export default function SearchBox(props){
                                 .then((response) => response.text())
 
                                 .then((result) => {
-                                    //const result = result[0,1,2]
-                                    //console.log(JSON.parse(result));
+                                   
                                     const parseResult = JSON.parse(result);
                                     console.log(JSON.parse(result));
                                     setListPlace(JSON.parse(result));
