@@ -9,11 +9,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-
-
 import { icon } from "leaflet";
-
-
 import { render } from "@testing-library/react";
 
 
@@ -51,11 +47,7 @@ export default function SearchBox(props){
 
                             }}
 
-
-
                         />
-
-
 
 
                     </div>
@@ -111,9 +103,8 @@ export default function SearchBox(props){
                                         setListPlace([]);// this should be an empty array
                             
 
-
-                                        
-                                   
+                               
+                        
                                         
                                         const JsonItem = JSON.stringify(item);
                                        
@@ -133,8 +124,8 @@ export default function SearchBox(props){
                                          axios.request(options).then((response) => {
                                              console.log(response.data, "Hey there, you send data to server - wait for LOTR server  response :)")
                                              console.log(item)
- 
-
+                                             //future new feature: draw red line between item and response-when clickOn alert
+                                           
                                             
                                              alert("Elen síla lúmenn' omentielvo\nA star shines on the hour of our meeting\n"+response.data.toString());
                                             
@@ -162,9 +153,7 @@ export default function SearchBox(props){
                             )
                         })}
                         
-                    
-                    
-                       
+                      
                     
                     </List>
             </div>

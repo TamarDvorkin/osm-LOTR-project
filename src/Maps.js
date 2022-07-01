@@ -26,10 +26,7 @@ const defaultZoom = 5;
 function ResetCenterView(props){
     const{ selectPosition } = props;
     const map = useMap();
-    
-  
-
-
+ 
     useEffect(()=>{
         if(selectPosition){
             
@@ -38,6 +35,7 @@ function ResetCenterView(props){
             
             )
         }
+       
         }, [selectPosition]);
 
         
@@ -45,10 +43,8 @@ function ResetCenterView(props){
         return null;
     
 
-
     }
-
-
+    
 
 
 export default function Map(props){
