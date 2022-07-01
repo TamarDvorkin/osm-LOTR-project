@@ -1,8 +1,5 @@
 
-
 import React, { useState } from "react";
-
-
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -12,20 +9,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-
-
-//import List from '@mui/material/List';
-//import ListItem from '@mui/material/ListItem';
-
-//import ListItemIcon from '@mui/material/ListItemIcon';
-//import ListItemText from '@mui/material/ListItemText';
-//import Divider from '@mui/material/Divider';
 import { icon } from "leaflet";
-
-//import "./stylesME.css"
-//import { fontStyle } from "@mui/system";
 import { render } from "@testing-library/react";
-//import { response } from "express";
+
 
 const NOMINATION_BASE_URL = "https://nominatim.openstreetmap.org/search?";
 const params = {
@@ -61,11 +47,7 @@ export default function SearchBox(props){
 
                             }}
 
-
-
                         />
-
-
 
 
                     </div>
@@ -118,44 +100,35 @@ export default function SearchBox(props){
                                         //now Im keeping user input as js object
                                         console.log(item);
                                         //here I want to close the results- the list options that item was choosen from
-                                        setListPlace([]);// look at line 36- this should be an empty array
+                                        setListPlace([]);// this should be an empty array
                             
 
-
-                                        
-                                        //array of inputs in js
-                                        //array push- like append in python 
-                                        //define array length- to be continued
-                                        //fifo- first in first out if array length larger than
-                                        //future development- ask user which one to move if array length more than...
+                               
+                        
                                         
                                         const JsonItem = JSON.stringify(item);
-                                        //console.log(JsonItem);
+                                       
                                         const ItemArray = [];
-                                        ItemArray.push(item); // check how to do append in react
+                                        ItemArray.push(item); 
                                         console.log(ItemArray);
 
-                                        //Now lets send request and get respond to and from back
+                                        //Now  send request and get respond to and from back
 
                                     
                                         const options = {
                                              method: 'GET',
-                                             url: "http://localhost:3001/locations?"+"lon="+item.lon+"&lat="+item.lat,  //that is my server structre
-                                             //data: {selectPosition= "item"},
+                                             url: "http://localhost:3001/locations?"+"lon="+item.lon+"&lat="+item.lat,  //that is my server response structre
+                                             
                                          }
                                 
                                          axios.request(options).then((response) => {
                                              console.log(response.data, "Hey there, you send data to server - wait for LOTR server  response :)")
                                              console.log(item)
-
-
-                                             
-  
-
-                                             
+                                             //future new feature: draw red line between item and response-when clickOn alert
+                                           
+                                            
                                              alert("Elen síla lúmenn' omentielvo\nA star shines on the hour of our meeting\n"+response.data.toString());
-                                             //alert(sendAlert, response.data.toString())
-                                             //setWords(response.data)
+                                            
                                 
                                         }).catch((error) => {
                                              console.error(error)
@@ -180,9 +153,7 @@ export default function SearchBox(props){
                             )
                         })}
                         
-                    
-                    
-                       
+                      
                     
                     </List>
             </div>
@@ -194,4 +165,3 @@ export default function SearchBox(props){
     )
 }
 
-//<div style={{ display: "flex", alignItems: "end", padding: "10px 50px", flexDirection: "column" }}> 
