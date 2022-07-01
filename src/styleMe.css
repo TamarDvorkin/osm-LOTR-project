@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding:0;
+
+}
+img {
+    max-width: 100%;
+}
+
+
+.main-container {
+    background-image: url("../src/MEMap.jpg");
+    background-size: cover;
+    padding: 1rem
+}
