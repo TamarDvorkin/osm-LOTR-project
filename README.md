@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-"Speak friend, and Enter", welcome to my LOTR front  application, find the closest LOTRS's movie set to your location (NZ)
+"Speak friend, and Enter", welcome to my LOTR front  application "New Zealand or Middle Earth?", find the closest LOTRS's movie set to your location (NZ)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
