@@ -3,12 +3,10 @@ import React, { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer,useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-import {useMapEvents} from "react-leaflet";
 import {useState} from "react";
 import { useRef } from "react";
 import { useMemo } from "react";
 import { useCallback } from "react";
-import { render } from "@testing-library/react";
 import "./index.css";
 
 
@@ -16,8 +14,6 @@ const icon = L.icon({
     iconUrl: "./leafLorien.png",
     iconSize: [38,38]
 });
-
-
 
 const position = [-41.28664, 174.77557]
 const center = position
@@ -38,17 +34,10 @@ function ResetCenterView(props){
        
         }, [selectPosition]);
 
-        
-
         return null;
-    
-
     }
-    
-
-
+ 
 export default function Map(props){
-
     const {selectPosition}= props;
     const locationSelection = [selectPosition?.lat, selectPosition?.lon];
     const [draggable, setDraggable] = useState(false)
@@ -69,11 +58,8 @@ export default function Map(props){
           setDraggable((d) => !d)
         }, [])
 
-
-
     return(
         <MapContainer
-
             center={position} zoom={defaultZoom} scrollWheelZoom={true} style={{ width: "100%", height: "100%" }}>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -84,7 +70,6 @@ export default function Map(props){
                 <Marker position={locationSelection} icon={icon} zoom={10}
                     draggable={draggable}
                     eventHandlers={eventHandlers}
-                    //position_={position}
                     ref={markerRef}>
 
                     <Popup minWidth={90}>
@@ -105,3 +90,4 @@ export default function Map(props){
     )
 
 }
+

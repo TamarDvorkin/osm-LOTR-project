@@ -3,14 +3,11 @@ import React, { useState } from "react";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import axios from 'axios';
-import Locations from './Components/Locations';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
-import { icon } from "leaflet";
-import { render } from "@testing-library/react";
 
 
 const NOMINATION_BASE_URL = "https://nominatim.openstreetmap.org/search?";
@@ -19,9 +16,7 @@ const params = {
     format: "json",
     addressdetails: "addressdetails"
 
-
 };
-
 
 
 export default function SearchBox(props){
@@ -33,9 +28,6 @@ export default function SearchBox(props){
     return(
         <div style={{ display: "flex", flexDirection: "column" }}>
             <div>
-            
-            
-        
                 <div style={{ display: "flex", padding: "20px" }}>
                     <div style={{ flex: 1, fontStyle: "oblique", fontSize: "50px", color: "black", }}>
                         New Zealand Or Middle Earth?
@@ -48,10 +40,7 @@ export default function SearchBox(props){
                             }}
 
                         />
-
-
                     </div>
-
                     <div style={{ display: "flex", alignItems: "end", padding: "10px 50px" }}> 
                     
                         
@@ -96,24 +85,10 @@ export default function SearchBox(props){
                                     <ListItem 
                                     button
                                     onClick={() => {
-                                        setSelectPosition(item);
-                                        //now Im keeping user input as js object
-                                        console.log(item);
-                                        //here I want to close the results- the list options that item was choosen from
-                                        setListPlace([]);// this should be an empty array
-                            
-
-                               
-                        
-                                        
-                                        const JsonItem = JSON.stringify(item);
-                                       
-                                        const ItemArray = [];
-                                        ItemArray.push(item); 
-                                        console.log(ItemArray);
-
-                                        //Now  send request and get respond to and from back
-
+                                        setSelectPosition(item);      
+                                        // close the list results
+                                        setListPlace([]);
+                                        //Now send request and get respond to and from back
                                     
                                         const options = {
                                              method: 'GET',
@@ -122,29 +97,21 @@ export default function SearchBox(props){
                                          }
                                 
                                          axios.request(options).then((response) => {
-                                             console.log(response.data, "Hey there, you send data to server - wait for LOTR server  response :)")
-                                             console.log(item)
-                                             //future new feature: draw red line between item and response-when clickOn alert
-                                           
-                                            
                                              alert("Elen síla lúmenn' omentielvo\nA star shines on the hour of our meeting\n"+response.data.toString());
-                                            
-                                
+
                                         }).catch((error) => {
                                              console.error(error)
                                             
                                          })
 
                                     }}
-                                    
-                                    
+   
                                     >
+                                     
                                         <ListItemIcon>
                                             <img src="./leafLorien.png" alt="Leaf of Lorien Icon " style={{ width: "20%", height: "20%" }} />
                                         </ListItemIcon>
                                         <ListItemText primary={item?.display_name} />
-
-
                                     </ListItem>
                                     <Divider />
 
@@ -152,9 +119,7 @@ export default function SearchBox(props){
 
                             )
                         })}
-                        
-                      
-                    
+                     
                     </List>
             </div>
             </div>
