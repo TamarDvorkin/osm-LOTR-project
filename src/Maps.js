@@ -76,7 +76,7 @@ export default function Map(props){
                         <span onClick={toggleDraggable}>
                             {draggable
                                 ? 'ZOOM IN'
-                                : 'ZOOM IN'}
+                                : 'Click here to drag marker'}
                         </span>
 
                     </Popup>
