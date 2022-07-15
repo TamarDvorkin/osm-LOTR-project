@@ -97,7 +97,44 @@ export default function SearchBox(props){
                                          }
                                 
                                          axios.request(options).then((response) => {
-                                             alert("Elen síla lúmenn' omentielvo\nA star shines on the hour of our meeting\n"+response.data.toString());
+
+                                                const LOTRname= response.data.toString()
+                                                const SpliteachLOTRname = LOTRname.split(",")
+                                                const NameFromResopnse = SpliteachLOTRname[0]
+                                                let alertThis = ""
+                                                
+                                                if(NameFromResopnse.includes("Shire")){
+                                                    alertThis = "What about second breakfast?\n"}
+                                                else if(NameFromResopnse== "Ithilien"){
+                                                    alertThis = "All we wish is to catch a fish!\n"}
+                                                else if(NameFromResopnse.includes("Mordor")){
+                                                    alertThis = "One does not simply walk into Mordor!\n"}
+                                                else if(NameFromResopnse.includes("Dimholt Road")){
+                                                    alertThis = "Fight for us, and regain your honor.\n What say you?\n"}
+                                                else if(NameFromResopnse.includes("Dimrill Dale")){
+                                                    alertThis = "Run, you fools!\n"}
+                                                else if(NameFromResopnse.includes("Ered Nimrais")){
+                                                    alertThis = "The beacon of Amon Din is lit!\n Gondor calls for aid\n"}
+                                                else if(NameFromResopnse.includes("Edoras")){
+                                                    alertThis = "And Rohan will answer. Muster the Rohirrim\n"}
+                                                else if(NameFromResopnse.includes("Ford of Bruinen")){
+                                                        alertThis = "Nîn o Chithaeglir,lasto beth dhaer\nRimmo nîn Bruinen dan in Ulaer\n"}
+                                                else if(NameFromResopnse.includes("Isengard")){
+                                                    alertThis = "There will be no dawn... for Men\n"}
+                                                else if(NameFromResopnse.includes("camp")){
+                                                    alertThis = "What's taters, precious? What's taters, eh?\n Po-tay-toes!\n"}
+                                                else if(NameFromResopnse.includes("The Argonath on the Anduin River")){
+                                                    alertThis = "Long have I desired to look upon the Kings of old. My kin\n"}
+                                                else if(NameFromResopnse.includes("Silverlode and Anduin rivers")){
+                                                    alertThis = "I give you the light of Earendil, our most beloved star.\n May it be a light for you in dark places,\n when all other lights go out\n"}
+                                                else if(NameFromResopnse.includes("Fangorn Forest")){
+                                                    alertThis = " Tree? I am no tree! I am an Ent\n"}
+                                                else if(NameFromResopnse.includes("Rivendell")){
+                                                    alertThis = "Elen síla lúmenn' omentielvo\nA star shines on the hour of our meeting\n"}
+                                                else if(NameFromResopnse.includes("Dead Marshes")){
+                                                    alertThis = "Don't follow the lights\n"}
+  
+                                                alert(alertThis + response.data.toString());
 
                                         }).catch((error) => {
                                              console.error(error)
