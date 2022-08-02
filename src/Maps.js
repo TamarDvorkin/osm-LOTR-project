@@ -28,7 +28,7 @@ function ResetCenterView(props){
     
     let coordArray = [[selectPosition?.lat, selectPosition?.lon]]
     console.log("came from searchBox- user item" +coordArray)//remove me latter
-    console.log( "came as axios respond"+ positionLOTR); //THAT IS !THE! PROBLEM
+    console.log( "came as axios respond to Map "+ positionLOTR); //THAT IS !THE! PROBLEM
     const allCoordForMap=
      [
         [coordArray],
