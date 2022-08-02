@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Button from '@mui/material/Button';
 import axios from 'axios';
@@ -8,6 +8,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import { color } from "@mui/system";
+
 
 
 const NOMINATION_BASE_URL = "https://nominatim.openstreetmap.org/search?";
@@ -19,32 +21,41 @@ const params = {
 };
 
 
+
+
 export default function SearchBox(props){
 
     const {selectPosition, setSelectPosition} = props;
+    const {positionLOTR, setPositionLOTR} = props;
     const [searchText, setSearchText] = useState("");
     const [listPlace, setListPlace]=useState([]);
+
+    
+ 
+    
 
     return(
         <div style={{ display: "flex", flexDirection: "column" }}>
             <div>
                 <div style={{ display: "flex", padding: "20px" }}>
-                    <div style={{ flex: 1, fontStyle: "oblique", fontSize: "50px", color: "black", }}>
+                    <div style={{ flex: 1, fontStyle: "oblique", fontSize: "50px", color: "black", textShadow: "2px 2px 2px white" }}>
                         New Zealand Or Middle Earth?
 
-                        <OutlinedInput style={{ width: "100%", value: searchText }}
+                        <OutlinedInput style={{ width: "100%", value: searchText, color:"black", fontWeight: "bold" }}
                             onChange={(event) => {
 
                                 setSearchText(event.target.value);
+                            
 
                             }}
 
                         />
                     </div>
-                    <div style={{ display: "flex", alignItems: "end", padding: "10px 50px" }}> 
+                    <div  style={{ display: "flex", alignItems: "end", padding: "10px 50px"}} > 
                     
                         
                         <Button variant="contained" color="primary" onClick={() => {
+                            
 
                             const params = {
 
@@ -77,15 +88,22 @@ export default function SearchBox(props){
                         </Button>
                         
                 </div>
-                <div  style={{maxHeight:"20px", padding: "70px"}}>
-                    <List component="nav" aria-label="main mailbox folders">
+                <div id = "placeList" style={{maxHeight:"20px", padding: "70px" }}>
+                    <List id = "scrollList" component="nav" aria-label="main mailbox folders">  
                         {listPlace.map((item)=>{
                             return(
-                                 <div key = {item?.place_id}>
+                                 <div key = {item?.place_id} >
+                                 
                                     <ListItem 
+                                   
                                     button
                                     onClick={() => {
-                                        setSelectPosition(item);      
+                                        
+                                        setSelectPosition(item);    
+                                        console.log(item)
+                                        
+                                      
+                                        
                                         // close the list results
                                         setListPlace([]);
                                         //Now send request and get respond to and from back
@@ -97,12 +115,36 @@ export default function SearchBox(props){
                                          }
                                 
                                          axios.request(options).then((response) => {
+                                            console.log("axius re" +response)
+                                             
 
+                                                let obj = JSON.parse(response.data);
+                                                let resArray = [];
+                                              
+                                                for(let i in obj)
+                                                    resArray.push(obj[i]);
+                                               
+
+                                                
+                                                const alarmLon = parseFloat(resArray[1])
+                                                const alarmLat = parseFloat(resArray[2]) 
+
+
+                                                const coordToDrawLine =[];
+                                                coordToDrawLine.push(alarmLon, alarmLat);
+                                             
+                                                setPositionLOTR(coordToDrawLine); //take to Map compennent
+                                                console.log("take to map" +  coordToDrawLine); //remove me 
+                                                
+
+                                              
+                                              
                                                 const LOTRname= response.data.toString()
                                                 const SpliteachLOTRname = LOTRname.split(",")
-                                                const NameFromResopnse = SpliteachLOTRname[0]
+
+                                                const NameFromResopnse = SpliteachLOTRname[0]           
                                                 let alertThis = ""
-                                                
+
                                                 if(NameFromResopnse.includes("Shire")){
                                                     alertThis = "What about second breakfast?\n"}
                                                 else if(NameFromResopnse== "Ithilien"){

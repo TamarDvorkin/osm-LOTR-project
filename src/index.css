@@ -1,8 +1,10 @@
 
 * {
   box-sizing : border-box;
+  
 
 }
+
 
 
 
@@ -29,9 +31,13 @@ code {
     display: "flex";
     flex-direction: "column";
     display: "flex";
-
+    background-color:rgb(231, 248, 192);
+    color:rgb(48, 26, 2);
+  
 
 }
+
+
 
 
 .Map{
@@ -40,5 +46,5 @@ code {
 }
 
 .MapContainer{
-  position:relative;
+  position: relative;
 }
